@@ -86,3 +86,39 @@ function updateTabImage(tabName) {
 document.addEventListener('DOMContentLoaded', function() {
     updateTabImage('Tab1');
 });
+
+
+// Form submission handling
+document.addEventListener('DOMContentLoaded', function() {
+    const contactForm = document.getElementById('contactForm');
+    const submitBtn = contactForm.querySelector('.submit-btn');
+    
+    contactForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        // Show loading state
+        submitBtn.classList.add('loading');
+        submitBtn.disabled = true;
+        
+        // Simulate form submission
+        setTimeout(() => {
+            // Here you would typically send the form data to your server
+            alert('Thank you for your message! We\'ll get back to you within 24 hours.');
+            contactForm.reset();
+            submitBtn.classList.remove('loading');
+            submitBtn.disabled = false;
+        }, 2000);
+    });
+    
+    // Add focus animations
+    const formInputs = contactForm.querySelectorAll('input, textarea, select');
+    formInputs.forEach(input => {
+        input.addEventListener('focus', function() {
+            this.parentElement.classList.add('focused');
+        });
+        
+        input.addEventListener('blur', function() {
+            this.parentElement.classList.remove('focused');
+        });
+    });
+});
