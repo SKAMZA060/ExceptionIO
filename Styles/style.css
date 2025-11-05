@@ -1598,30 +1598,50 @@ body {
   }
 }
 
-/* Clients Section */
+/* Clients Section - Fixed */
 .clients-section {
-    padding: 4rem 2rem;
-    background: #f8fafc;
-    overflow: hidden;
+    padding: 4rem 0;
+    width: 100vw;
+    max-width: 100%;
+    margin-left: calc(-50vw + 50%);
+    margin-right: calc(-50vw + 50%);
+    background: linear-gradient(to bottom, #ffffff, #f8fafc);
+    text-align: center;
+    position: relative;
+    z-index: 1;
 }
 
 .clients-section .section-header {
-    text-align: center;
     margin-bottom: 3rem;
 }
 
 .clients-section h2 {
     font-size: 2.5rem;
-    color: #1E293B;
+    color: var(--text-dark);
     margin-bottom: 1rem;
     font-weight: 700;
+    position: relative;
+}
+
+.clients-section h2::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary-color), var(--primary-dark));
+    border-radius: 2px;
 }
 
 .clients-section p {
     font-size: 1.1rem;
     color: #64748B;
     max-width: 600px;
-    margin: 0 auto;
+    margin: 2rem auto 0;
+    line-height: 1.6;
+    font-style: italic;
 }
 
 .clients-container {
@@ -1629,60 +1649,67 @@ body {
     max-width: 1200px;
     margin: 0 auto;
     display: flex;
+    flex-direction: column;
+    align-items: center;
     gap: 2rem;
     overflow: hidden;
-    mask: linear-gradient(
-        90deg,
-        transparent,
-        white 20%,
-        white 80%,
-        transparent
-    );
-    -webkit-mask: linear-gradient(
-        90deg,
-        transparent,
-        white 20%,
-        white 80%,
-        transparent
-    );
+    padding: 0 2rem;
 }
 
 .clients-scroll {
     display: flex;
     align-items: center;
     gap: 3rem;
-    animation: scroll-horizontal 30s linear infinite;
+    animation: scroll-horizontal 40s linear infinite;
     flex-shrink: 0;
+    padding: 0 2rem;
+}
+
+/* Duplicate for seamless loop */
+.clients-scroll-duplicate {
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+    animation: scroll-horizontal 40s linear infinite;
+    flex-shrink: 0;
+    padding: 0 2rem;
+    animation-delay: -20s; /* Offset for seamless loop */
 }
 
 .client-logo {
     flex-shrink: 0;
-    padding: 1rem 1.5rem;
+    padding: 2rem 2.5rem;
     background: white;
     border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
     transition: all 0.3s ease;
     border: 1px solid #e2e8f0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100px;
+    min-width: 180px;
 }
 
 .client-logo:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-    border-color: #38BDF8;
+    transform: translateY(3px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    border-color: var(--primary-color);
 }
 
 .client-logo img {
-    height: 40px;
+    height: 35px;
     width: auto;
     object-fit: contain;
-    filter: grayscale(100%);
-    opacity: 0.7;
+    filter: grayscale(10%);
+    opacity: 0.8;
     transition: all 0.3s ease;
 }
 
 .client-logo:hover img {
     filter: grayscale(0%);
     opacity: 1;
+    transform: scale(1.05);
 }
 
 /* Animation for horizontal scroll */
@@ -1696,117 +1723,163 @@ body {
 }
 
 /* Pause animation on hover */
-.clients-container:hover .clients-scroll {
+.clients-container:hover .clients-scroll,
+.clients-container:hover .clients-scroll-duplicate {
     animation-play-state: paused;
+}
+
+/* Trust badge style */
+.clients-trust {
+    margin-top: 2rem;
+    padding: 1.5rem 2rem;
+    background: rgba(56, 189, 248, 0.05);
+    border-radius: 12px;
+    border: 1px solid rgba(56, 189, 248, 0.1);
+    max-width: 500px;
+}
+
+.clients-trust p {
+    font-size: 1rem;
+    color: #64748B;
+    margin: 0;
+    font-style: italic;
+}
+
+.clients-trust strong {
+    color: var(--primary-color);
+    font-weight: 600;
 }
 
 /* Static grid layout for larger screens */
 @media (min-width: 1200px) {
-    .clients-container {
-        display: grid;
-        grid-template-columns: repeat(5, 1fr);
-        gap: 2rem;
-        overflow: visible;
-        mask: none;
-        -webkit-mask: none;
-    }
-    
-    .clients-scroll {
+    .clients-scroll,
+    .clients-scroll-duplicate {
         animation: none;
-        display: contents;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 2rem;
+        width: 100%;
+        padding: 0;
     }
     
-    .clients-scroll:nth-child(2) {
+    .client-logo {
+        min-width: auto;
+        min-height: 120px;
+    }
+    
+    .clients-scroll-duplicate {
         display: none;
     }
 }
 
 /* Responsive Design */
+@media (max-width: 1024px) {
+    .clients-scroll,
+    .clients-scroll-duplicate {
+        gap: 2rem;
+        animation-duration: 35s;
+    }
+    
+    .client-logo {
+        padding: 1.5rem 2rem;
+        min-height: 90px;
+        min-width: 160px;
+    }
+    
+    .client-logo img {
+        height: 30px;
+    }
+}
+
 @media (max-width: 768px) {
     .clients-section {
-        padding: 3rem 1rem;
+        padding: 3rem 0;
     }
     
     .clients-section h2 {
         font-size: 2rem;
     }
     
-    .client-logo {
-        padding: 0.75rem 1rem;
-    }
-    
-    .client-logo img {
-        height: 30px;
-    }
-    
-    .clients-scroll {
-        gap: 2rem;
-        animation-duration: 20s;
-    }
-}
-
-@media (max-width: 480px) {
-    .clients-section {
-        padding: 2rem 1rem;
-    }
-    
-    .clients-section h2 {
-        font-size: 1.75rem;
+    .clients-scroll,
+    .clients-scroll-duplicate {
+        gap: 1.5rem;
+        animation-duration: 30s;
+        padding: 0 1.5rem;
     }
     
     .client-logo {
-        padding: 0.5rem 0.75rem;
+        padding: 1.25rem 1.5rem;
+        min-height: 80px;
+        min-width: 140px;
     }
     
     .client-logo img {
         height: 25px;
     }
     
-    .clients-scroll {
-        gap: 1.5rem;
+    .clients-trust {
+        margin-top: 1.5rem;
+        padding: 1.25rem 1.5rem;
     }
 }
 
-/* Alternative: Static grid without animation */
-.clients-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    gap: 2rem;
-    max-width: 1200px;
-    margin: 0 auto;
+@media (max-width: 480px) {
+    .clients-section {
+        padding: 2rem 0;
+    }
+    
+    .clients-section h2 {
+        font-size: 1.75rem;
+    }
+    
+    .clients-scroll,
+    .clients-scroll-duplicate {
+        gap: 1rem;
+        animation-duration: 25s;
+        padding: 0 1rem;
+    }
+    
+    .client-logo {
+        padding: 1rem 1.25rem;
+        min-height: 70px;
+        min-width: 120px;
+    }
+    
+    .client-logo img {
+        height: 20px;
+    }
+    
+    .clients-section p {
+        font-size: 1rem;
+        margin: 1.5rem auto 0;
+    }
+    
+    .clients-trust {
+        padding: 1rem 1.25rem;
+    }
+    
+    .clients-trust p {
+        font-size: 0.9rem;
+    }
 }
 
-.clients-grid .client-logo {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100px;
-    animation: none;
+/* Ensure proper logo alignment */
+.client-logo img {
+    max-width: 100%;
+    height: auto;
+    max-height: 40px;
 }
 
-/* Loading state for images */
+/* Handle different logo backgrounds */
 .client-logo {
-    position: relative;
-    min-height: 60px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    background: white;
 }
 
-.client-logo::before {
-    content: '';
-    position: absolute;
-    width: 80px;
-    height: 30px;
-    background: #f1f5f9;
+.client-logo img[src*="white"] {
+    background: transparent;
+}
+
+.client-logo img[src*="red-bg"] {
+    background: transparent;
     border-radius: 4px;
-    display: none;
-}
-
-.client-logo.loading::before {
-    display: block;
-}
-
-.client-logo.loading img {
-    opacity: 0;
 }
