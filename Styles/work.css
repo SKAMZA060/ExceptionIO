@@ -823,8 +823,8 @@ body {
 }
 
 
-.portfolio-item:hover .project-image img {
-    transform: scale(1.03);
+.portfolio-item:hover{
+    transform: scale(0.93);
 }
 
 .project-overlay {
