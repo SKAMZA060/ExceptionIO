@@ -282,10 +282,13 @@ function openTab(evt, tabName) {
     }
 }
 
-// Form submission handling
+// Form submission handling with EmailJS
 document.addEventListener('DOMContentLoaded', function() {
     const contactForm = document.getElementById('contactForm');
     const submitBtn = contactForm.querySelector('.submit-btn');
+    
+    // Initialize EmailJS with your Public Key
+    emailjs.init('OX-a1fFWh5t1sFFrN');
     
     contactForm.addEventListener('submit', function(e) {
         e.preventDefault();
@@ -293,16 +296,207 @@ document.addEventListener('DOMContentLoaded', function() {
         // Show loading state
         submitBtn.classList.add('loading');
         submitBtn.disabled = true;
+        submitBtn.textContent = 'Sending...';
         
-        // Simulate form submission
-        setTimeout(() => {
-            // Here you would typically send the form data to your server
-            alert('Thank you for your message! We\'ll get back to you within 24 hours.');
-            contactForm.reset();
-            submitBtn.classList.remove('loading');
-            submitBtn.disabled = false;
-        }, 2000);
+        // Get form data
+        const formData = {
+            firstName: document.getElementById('firstName').value,
+            lastName: document.getElementById('lastName').value,
+            email: document.getElementById('email').value,
+            phone: document.getElementById('phone').value,
+            companySize: document.getElementById('companySize').value,
+            message: document.getElementById('message').value,
+            privacyPolicy: document.getElementById('privacyPolicy').checked
+        };
+        
+        // Send email using EmailJS
+        emailjs.send('service_3ia6jom', 'template_9k5hxqd', formData)
+            .then(function(response) {
+                console.log('SUCCESS!', response.status, response.text);
+                
+                // Show professional success message
+                showSuccessMessage(formData.firstName);
+                contactForm.reset();
+                
+                // Reset button state
+                submitBtn.classList.remove('loading');
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Send';
+            }, function(error) {
+                console.log('FAILED...', error);
+                
+                // Show error message
+                showErrorMessage();
+                
+                // Reset button state
+                submitBtn.classList.remove('loading');
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Send';
+            });
     });
+    
+    // Professional success message function
+    function showSuccessMessage(firstName) {
+        const modal = document.createElement('div');
+        modal.style.cssText = `
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 10000;
+            font-family: system-ui, -apple-system, sans-serif;
+        `;
+        
+        modal.innerHTML = `
+            <div style="
+                background: white;
+                padding: 40px;
+                border-radius: 12px;
+                text-align: center;
+                max-width: 500px;
+                margin: 20px;
+                box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+                border: 1px solid #e0e0e0;
+            ">
+                <div style="
+                    background: #4CAF50;
+                    width: 60px;
+                    height: 60px;
+                    border-radius: 50%;
+                    margin: 0 auto 20px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    font-size: 30px;
+                    color: white;
+                ">✓</div>
+                
+                <h2 style="
+                    color: #2c3e50;
+                    margin: 0 0 15px 0;
+                    font-size: 24px;
+                    font-weight: 600;
+                ">Message Sent Successfully</h2>
+                
+                <p style="
+                    color: #5d6d7e;
+                    line-height: 1.6;
+                    margin: 0 0 25px 0;
+                    font-size: 16px;
+                ">
+                    Thank you, <strong>${firstName}</strong>! Your inquiry has been received and will be reviewed by our team. 
+                    We appreciate your interest and will respond within 24 business hours.
+                </p>
+                
+                <button onclick="this.closest('div').parentElement.remove()" style="
+                    background: #3498db;
+                    color: white;
+                    border: none;
+                    padding: 12px 30px;
+                    border-radius: 6px;
+                    font-size: 16px;
+                    cursor: pointer;
+                    font-weight: 500;
+                    transition: background 0.3s ease;
+                " onmouseover="this.style.background='#2980b9'" 
+                   onmouseout="this.style.background='#3498db'">
+                    Continue
+                </button>
+            </div>
+        `;
+        
+        document.body.appendChild(modal);
+        
+        // Auto-close after 8 seconds
+        setTimeout(() => {
+            if (document.body.contains(modal)) {
+                modal.remove();
+            }
+        }, 8000);
+    }
+    
+    // Professional error message function
+    function showErrorMessage() {
+        const modal = document.createElement('div');
+        modal.style.cssText = `
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 10000;
+            font-family: system-ui, -apple-system, sans-serif;
+        `;
+        
+        modal.innerHTML = `
+            <div style="
+                background: white;
+                padding: 40px;
+                border-radius: 12px;
+                text-align: center;
+                max-width: 500px;
+                margin: 20px;
+                box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+                border: 1px solid #e0e0e0;
+            ">
+                <div style="
+                    background: #e74c3c;
+                    width: 60px;
+                    height: 60px;
+                    border-radius: 50%;
+                    margin: 0 auto 20px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    font-size: 30px;
+                    color: white;
+                ">!</div>
+                
+                <h2 style="
+                    color: #2c3e50;
+                    margin: 0 0 15px 0;
+                    font-size: 24px;
+                    font-weight: 600;
+                ">Submission Error</h2>
+                
+                <p style="
+                    color: #5d6d7e;
+                    line-height: 1.6;
+                    margin: 0 0 25px 0;
+                    font-size: 16px;
+                ">
+                    We apologize, but there was an issue sending your message. 
+                    Please try again in a few moments or contact us directly at our support email.
+                </p>
+                
+                <button onclick="this.closest('div').parentElement.remove()" style="
+                    background: #e74c3c;
+                    color: white;
+                    border: none;
+                    padding: 12px 30px;
+                    border-radius: 6px;
+                    font-size: 16px;
+                    cursor: pointer;
+                    font-weight: 500;
+                    transition: background 0.3s ease;
+                " onmouseover="this.style.background='#c0392b'" 
+                   onmouseout="this.style.background='#e74c3c'">
+                    Try Again
+                </button>
+            </div>
+        `;
+        
+        document.body.appendChild(modal);
+    }
     
     // Add focus animations
     const formInputs = contactForm.querySelectorAll('input, textarea, select');
@@ -336,3 +530,133 @@ document.addEventListener('DOMContentLoaded', function() {
         observer.observe(item);
     });
 });
+
+
+// Enhanced Tab Manager with overflow prevention
+class ServicesTabManager {
+    constructor() {
+        this.currentTab = 'system-development';
+        this.init();
+    }
+
+    init() {
+        this.bindEvents();
+        this.activateTab(this.currentTab);
+        this.adimateTabButtons();
+    }
+
+    bindEvents() {
+        // Tab button clicks
+        document.querySelectorAll('.tab-button').forEach(button => {
+            button.addEventListener('click', (e) => {
+                const tabId = e.currentTarget.dataset.tab;
+                this.activateTab(tabId);
+            });
+        });
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') {
+                e.preventDefault();
+                this.navigateTabs(e.key === 'ArrowRight' ? 'next' : 'prev');
+            }
+        });
+
+        // Window resize handling
+        window.addEventListener('resize', () => {
+            this.adimateTabButtons();
+        });
+    }
+
+    activateTab(tabId) {
+        // Update buttons
+        document.querySelectorAll('.tab-button').forEach(button => {
+            button.classList.toggle('active', button.dataset.tab === tabId);
+        });
+
+        // Update content
+        document.querySelectorAll('.tab-content').forEach(content => {
+            content.classList.toggle('active', content.id === tabId);
+        });
+
+        // Update theme
+        this.updateTheme(tabId);
+
+        this.currentTab = tabId;
+
+        // Smooth scroll to top of tabs section
+        const tabsSection = document.querySelector('.services-tabs-section');
+        if (tabsSection) {
+            window.scrollTo({
+                top: tabsSection.offsetTop - 100,
+                behavior: 'smooth'
+            });
+        }
+    }
+
+    updateTheme(tabId) {
+        const section = document.querySelector('.services-tabs-section');
+        
+        if (tabId === 'penetration-testing') {
+            section.classList.add('cybersecurity-theme');
+            this.updateMetaTheme('dark');
+        } else {
+            section.classList.remove('cybersecurity-theme');
+            this.updateMetaTheme('light');
+        }
+    }
+
+    updateMetaTheme(theme) {
+        const metaTheme = document.querySelector('meta[name="theme-color"]');
+        if (metaTheme) {
+            metaTheme.setAttribute('content', theme === 'dark' ? '#0F172A' : '#38BDF8');
+        }
+    }
+
+    navigateTabs(direction) {
+        const tabs = Array.from(document.querySelectorAll('.tab-button'));
+        const currentIndex = tabs.findIndex(tab => tab.classList.contains('active'));
+        let nextIndex;
+
+        if (direction === 'next') {
+            nextIndex = (currentIndex + 1) % tabs.length;
+        } else {
+            nextIndex = (currentIndex - 1 + tabs.length) % tabs.length;
+        }
+
+        this.activateTab(tabs[nextIndex].dataset.tab);
+    }
+
+    adjustTabButtons() {
+        const tabButtons = document.querySelector('.tab-buttons');
+        const buttons = document.querySelectorAll('.tab-button');
+        
+        if (window.innerWidth < 768) {
+            // On mobile, ensure buttons are properly scrollable
+            tabButtons.style.overflowX = 'auto';
+            buttons.forEach(button => {
+                button.style.flex = '0 0 auto';
+            });
+        } else {
+            // On desktop, ensure equal distribution
+            tabButtons.style.overflowX = 'visible';
+            buttons.forEach(button => {
+                button.style.flex = '1';
+            });
+        }
+    }
+}
+
+// Initialize when DOM is loaded
+document.addEventListener('DOMContentLoaded', function() {
+    new ServicesTabManager();
+});
+
+// Prevent horizontal scroll
+window.addEventListener('scroll', function() {
+    if (window.scrollX !== 0) {
+        window.scrollTo(0, window.scrollY);
+    }
+});
+
+
