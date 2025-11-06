@@ -282,6 +282,8 @@ function openTab(evt, tabName) {
     }
 }
 
+
+    
 // Form submission handling with EmailJS
 document.addEventListener('DOMContentLoaded', function() {
     const contactForm = document.getElementById('contactForm');
@@ -306,36 +308,49 @@ document.addEventListener('DOMContentLoaded', function() {
             phone: document.getElementById('phone').value,
             companySize: document.getElementById('companySize').value,
             message: document.getElementById('message').value,
-            privacyPolicy: document.getElementById('privacyPolicy').checked
+            privacyPolicy: document.getElementById('privacyPolicy').checked,
+            timestamp: new Date().toLocaleString('en-US', { 
+                weekday: 'long', 
+                year: 'numeric', 
+                month: 'long', 
+                day: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit'
+            })
         };
         
-        // Send email using EmailJS
-        emailjs.send('service_3ia6jom', 'template_9k5hxqd', formData)
-            .then(function(response) {
-                console.log('SUCCESS!', response.status, response.text);
-                
-                // Show professional success message
-                showSuccessMessage(formData.firstName);
-                contactForm.reset();
-                
-                // Reset button state
-                submitBtn.classList.remove('loading');
-                submitBtn.disabled = false;
-                submitBtn.textContent = 'Send';
-            }, function(error) {
-                console.log('FAILED...', error);
-                
-                // Show error message
-                showErrorMessage();
-                
-                // Reset button state
-                submitBtn.classList.remove('loading');
-                submitBtn.disabled = false;
-                submitBtn.textContent = 'Send';
-            });
+        // Send TWO emails: Auto-reply to user + Notification to you
+        Promise.all([
+            // Auto-reply to user
+            emailjs.send('service_3ia6jom', 'template_9k5hxqd', formData),
+            // Notification to you (business owner)
+            emailjs.send('service_3ia6jom', 'template_notification', formData)
+        ])
+        .then(function(responses) {
+            console.log('SUCCESS! Both emails sent', responses);
+            
+            // Show professional success message
+            showSuccessMessage(formData.firstName);
+            contactForm.reset();
+            
+            // Reset button state
+            submitBtn.classList.remove('loading');
+            submitBtn.disabled = false;
+            submitBtn.textContent = 'Send';
+        }, function(error) {
+            console.log('FAILED...', error);
+            
+            // Show error message
+            showErrorMessage();
+            
+            // Reset button state
+            submitBtn.classList.remove('loading');
+            submitBtn.disabled = false;
+            submitBtn.textContent = 'Send';
+        });
     });
     
-    // Professional success message function
+    // Professional success message function (keep your existing one)
     function showSuccessMessage(firstName) {
         const modal = document.createElement('div');
         modal.style.cssText = `
@@ -420,7 +435,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 8000);
     }
     
-    // Professional error message function
+    // Professional error message function (keep your existing one)
     function showErrorMessage() {
         const modal = document.createElement('div');
         modal.style.cssText = `
