@@ -1872,7 +1872,7 @@ body {
 
 /* Handle different logo backgrounds */
 .client-logo {
-    background: white;
+    background: var(--bg-dark);
 }
 
 .client-logo img[src*="white"] {
