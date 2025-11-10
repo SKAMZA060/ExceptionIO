@@ -1608,7 +1608,7 @@ body {
 
 /* Handle different logo backgrounds */
 .client-logo {
-    background: white;
+    background: var(--border-color);
 }
 
 .client-logo img[src*="white"] {

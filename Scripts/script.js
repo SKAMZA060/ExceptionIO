@@ -45,8 +45,8 @@ class TabManager {
             ['Tab1', 'Images/Tabs/backend-development.jpg'],
             ['Tab2', 'Images/Tabs/frontend-development.jpg'],
             ['Tab3', 'Images/Tabs/Mobile Application Development.jpg'],
-            ['Tab5', 'Images/Tabs/UI Design.jpg'],
-            ['Tab6', 'Images/Tabs/devops-cloud.jpg']
+            ['Tab4', 'Images/Tabs/UI Design.jpg'],
+            ['Tab5', 'Images/Tabs/devops-cloud.jpg']
         ]);
         this.init();
     }
