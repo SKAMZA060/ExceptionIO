@@ -1,0 +1,21 @@
+{
+  "name": "exceptionsite",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "optimize-images": "node scripts/optimize-images.js",
+    "minify-css": "npx csso Styles/work.css --output Styles/work.min.css --restructure --source-map"
+  },
+  "devDependencies": {
+    "sharp": "^0.32.0",
+    "csso-cli": "^6.0.0",
+    "terser": "^5.18.0"
+  },
+  "scripts": {
+    "optimize-images": "node scripts/optimize-images.js",
+    "minify-css": "npx csso Styles/work.css --output Styles/work.min.css --restructure --source-map",
+    "minify-js": "npx terser Scripts/script.js --compress --mangle --output Scripts/script.min.js --source-map",
+    "build-site": "node scripts/inject-secrets.js",
+    "ci-build": "npm run optimize-images && npm run minify-css && npm run minify-js && npm run build-site"
+  }
+}

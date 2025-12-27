@@ -3,13 +3,48 @@
 
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ExceptionIO</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link rel="stylesheet" href="../Styles/about.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="description" content="About ExceptionIO — our philosophy, approach, and the industries we serve.">
+  <meta name="robots" content="index,follow">
+  <meta name="theme-color" content="#0f172a">
+  <title>ExceptionIO — About</title>
+
+  <!-- Performance: preconnect and non-blocking font & icon loads -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    crossorigin="anonymous">
+
+  <!-- Preload stylesheet and hero image for faster LCP -->
+  <link rel="preload" href="/Styles/about.css" as="style" onload="this.rel='stylesheet'">
+  <noscript>
+    <link rel="stylesheet" href="/Styles/about.css">
+  </noscript>
+  <link rel="preload" as="image" href="/Images/backgrounds/about-hero.jpg">
+
+  <!-- Canonical + Open Graph -->
+  <link rel="canonical" href="https://example.com/Pages/about.html">
+  <meta property="og:title" content="About ExceptionIO">
+  <meta property="og:description"
+    content="Where precision engineering meets relentless innovation — learn about our values and approach.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://example.com/Pages/about.html">
+  <meta property="og:image" content="https://example.com/Images/backgrounds/about-hero.jpg">
+
+  <!-- Favicons & manifest -->
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+  <link rel="manifest" href="/site.webmanifest">
+
+  <script
+    type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"ExceptionIO","url":"https://example.com","logo":"https://example.com/favicon/favicon-32x32.png"}</script>
 </head>
 
 <body>
+  <a class="skip-link" href="#maincontent">Skip to content</a>
   <!-----------------------header section------------------------------------>
   <header class="header">
     <nav class="main-nav">
@@ -35,7 +70,7 @@
             <a href="/Pages/service.html">UI/UX Design</a>
           </div>
         </li>
-        <li><a href="/Pages/about.html">About</a></li>
+        <li><a href="/Pages/about.html" class="active" aria-current="page">About</a></li>
         <li><a href="/Pages/work.html">Our Work</a></li>
         <li><a href="/Pages/Contact.html">Contact</a></li>
       </ul>
@@ -56,241 +91,248 @@
     </nav>
   </header>
   <!---------------------------end of header -------------------------------------->
-  <section class="about-hero">
-    <div class="about-hero-content">
-      <h1>Our Story</h1>
-      <p>Where precision engineering meets relentless innovation. Building systems that withstand the test of time and
-        threat.</p>
-    </div>
-  </section>
+  <main id="maincontent" class="page-content">
+    <section class="about-hero">
+      <div class="about-hero-content">
+        <h1>Our Story</h1>
+        <p>Where precision engineering meets relentless innovation. Building systems that withstand the test of time and
+          threat.</p>
+      </div>
+    </section>
 
-  <section class="about-story">
-    <div class="story-container">
-      <div class="story-content">
-        <h2>Our Philosophy</h2>
-        <div class="story-text">
-          <p>
-            At ExceptionIO, we operate on a fundamental belief: <strong>the best software must be broken before it can
-              be made unbreakable</strong>.
-            We see vulnerability not as a weakness, but as an opportunity to build stronger, more resilient systems.
-          </p>
-
-          <p>
-            Our journey begins where others stop at "good enough." Through rigorous penetration testing and systematic
-            stress analysis,
-            we deliberately challenge every component, every line of code, and every security protocol. This process of
-            intentional
-            deconstruction allows us to identify potential failure points before they become real-world problems.
-          </p>
-
-          <p>
-            What emerges from this crucible of testing is more than just functional software—it's battle-tested
-            infrastructure
-            capable of handling peak loads, repelling sophisticated attacks, and delivering seamless experiences under
-            the most
-            demanding conditions. Our systems don't just meet specifications; they exceed expectations for security,
-            performance, and reliability.
-          </p>
-
-          <div class="story-highlight">
+    <section class="about-story">
+      <div class="story-container">
+        <div class="story-content">
+          <h2>Our Philosophy</h2>
+          <div class="story-text">
             <p>
-              <strong>Rooted in South Africa, architected for global impact.</strong> We combine local understanding
-              with
-              international best practices to deliver solutions that scale from startup to enterprise, from local
-              markets
-              to global platforms.
+              At ExceptionIO, we operate on a fundamental belief: <strong>the best software must be broken before it can
+                be made unbreakable</strong>.
+              We see vulnerability not as a weakness, but as an opportunity to build stronger, more resilient systems.
+            </p>
+
+            <p>
+              Our journey begins where others stop at "good enough." Through rigorous penetration testing and systematic
+              stress analysis,
+              we deliberately challenge every component, every line of code, and every security protocol. This process
+              of
+              intentional
+              deconstruction allows us to identify potential failure points before they become real-world problems.
+            </p>
+
+            <p>
+              What emerges from this crucible of testing is more than just functional software—it's battle-tested
+              infrastructure
+              capable of handling peak loads, repelling sophisticated attacks, and delivering seamless experiences under
+              the most
+              demanding conditions. Our systems don't just meet specifications; they exceed expectations for security,
+              performance, and reliability.
+            </p>
+
+            <div class="story-highlight">
+              <p>
+                <strong>Rooted in South Africa, architected for global impact.</strong> We combine local understanding
+                with
+                international best practices to deliver solutions that scale from startup to enterprise, from local
+                markets
+                to global platforms.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="story-visual">
+          <div class="visual-card">
+            <div class="visual-icon">
+              <i class="fas fa-shield-alt"></i>
+            </div>
+            <h3>Security First</h3>
+            <p>Every system undergoes rigorous penetration testing before deployment</p>
+          </div>
+
+          <div class="visual-card">
+            <div class="visual-icon">
+              <i class="fas fa-rocket"></i>
+            </div>
+            <h3>Performance Optimized</h3>
+            <p>Built to handle peak loads and deliver consistent performance</p>
+          </div>
+
+          <div class="visual-card">
+            <div class="visual-icon">
+              <i class="fas fa-expand-arrows-alt"></i>
+            </div>
+            <h3>Scalable by Design</h3>
+            <p>Architected to grow with your business needs</p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="about-values">
+      <div class="section-container">
+        <h2>Our Core Values</h2>
+        <div class="values-grid">
+          <div class="value-item">
+            <div class="value-icon">
+              <i class="fas fa-bullseye"></i>
+            </div>
+            <h3>Precision</h3>
+            <p>Every system is built with accuracy and purpose, ensuring flawless execution from concept to deployment.
             </p>
           </div>
+
+          <div class="value-item">
+            <div class="value-icon">
+              <i class="fas fa-shield-alt"></i>
+            </div>
+            <h3>Security</h3>
+            <p>Infrastructure hardening and ethical hacking are baked into our DNA from the very first line of code.</p>
+          </div>
+
+          <div class="value-item">
+            <div class="value-icon">
+              <i class="fas fa-expand-arrows-alt"></i>
+            </div>
+            <h3>Scalability</h3>
+            <p>We build for growth — from local startups to global platforms, ensuring your systems evolve with your
+              business.</p>
+          </div>
+
+          <div class="value-item">
+            <div class="value-icon">
+              <i class="fas fa-pencil-ruler"></i>
+            </div>
+            <h3>Design Thinking</h3>
+            <p>UI/UX that's functional, intuitive, and workflow-driven, putting user experience at the forefront.</p>
+          </div>
+
+          <div class="value-item">
+            <div class="value-icon">
+              <i class="fas fa-eye"></i>
+            </div>
+            <h3>Transparency</h3>
+            <p>Clear logic, clean code, and honest collaboration form the foundation of every partnership.</p>
+          </div>
         </div>
       </div>
+    </section>
 
-      <div class="story-visual">
-        <div class="visual-card">
-          <div class="visual-icon">
+    <section class="about-industries">
+      <div class="section-container">
+        <h2>Industries We Serve</h2>
+        <p class="section-subtitle">Delivering tailored solutions across diverse sectors with precision and expertise
+        </p>
+        <div class="industry-grid">
+          <div class="industry-card">
+            <i class="fas fa-store"></i>
+            <h3>Retail & POS</h3>
+            <p>Custom point-of-sale and inventory management systems</p>
+          </div>
+          <div class="industry-card">
+            <i class="fas fa-utensils"></i>
+            <h3>Food & Hospitality</h3>
+            <p>Streamlined operations and customer experience solutions</p>
+          </div>
+          <div class="industry-card">
             <i class="fas fa-shield-alt"></i>
+            <h3>Cybersecurity</h3>
+            <p>Comprehensive protection and penetration testing services</p>
           </div>
-          <h3>Security First</h3>
-          <p>Every system undergoes rigorous penetration testing before deployment</p>
-        </div>
-
-        <div class="visual-card">
-          <div class="visual-icon">
-            <i class="fas fa-rocket"></i>
+          <div class="industry-card">
+            <i class="fas fa-search"></i>
+            <h3>Search & Workflow</h3>
+            <p>Intelligent search systems and automated workflow solutions</p>
           </div>
-          <h3>Performance Optimized</h3>
-          <p>Built to handle peak loads and deliver consistent performance</p>
-        </div>
-
-        <div class="visual-card">
-          <div class="visual-icon">
-            <i class="fas fa-expand-arrows-alt"></i>
+          <div class="industry-card">
+            <i class="fas fa-chart-line"></i>
+            <h3>Business Automation</h3>
+            <p>Process optimization and automation for operational excellence</p>
           </div>
-          <h3>Scalable by Design</h3>
-          <p>Architected to grow with your business needs</p>
+          <div class="industry-card">
+            <i class="fas fa-laptop-code"></i>
+            <h3>Software Development</h3>
+            <p>Custom applications and system architecture design</p>
+          </div>
         </div>
       </div>
-    </div>
-  </section>
-  <section class="about-values">
-    <div class="section-container">
-      <h2>Our Core Values</h2>
-      <div class="values-grid">
-        <div class="value-item">
-          <div class="value-icon">
-            <i class="fas fa-bullseye"></i>
+    </section>
+
+    <section class="about-approach">
+      <div class="section-container">
+        <h2>Our Approach</h2>
+        <div class="approach-content">
+          <div class="approach-text">
+            <p>
+              Our process blends systems architecture with real-world business logic. We start by deeply understanding
+              your
+              operations, then design modular solutions that automate, secure, and elevate your workflow.
+            </p>
+            <p>
+              Whether it's a complete POS system rollout or a comprehensive penetration test, we deliver with speed,
+              clarity, and measurable impact. Every project follows our proven methodology of discovery, design,
+              development, and deployment.
+            </p>
           </div>
-          <h3>Precision</h3>
-          <p>Every system is built with accuracy and purpose, ensuring flawless execution from concept to deployment.
-          </p>
-        </div>
-
-        <div class="value-item">
-          <div class="value-icon">
-            <i class="fas fa-shield-alt"></i>
-          </div>
-          <h3>Security</h3>
-          <p>Infrastructure hardening and ethical hacking are baked into our DNA from the very first line of code.</p>
-        </div>
-
-        <div class="value-item">
-          <div class="value-icon">
-            <i class="fas fa-expand-arrows-alt"></i>
-          </div>
-          <h3>Scalability</h3>
-          <p>We build for growth — from local startups to global platforms, ensuring your systems evolve with your
-            business.</p>
-        </div>
-
-        <div class="value-item">
-          <div class="value-icon">
-            <i class="fas fa-pencil-ruler"></i>
-          </div>
-          <h3>Design Thinking</h3>
-          <p>UI/UX that's functional, intuitive, and workflow-driven, putting user experience at the forefront.</p>
-        </div>
-
-        <div class="value-item">
-          <div class="value-icon">
-            <i class="fas fa-eye"></i>
-          </div>
-          <h3>Transparency</h3>
-          <p>Clear logic, clean code, and honest collaboration form the foundation of every partnership.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="about-industries">
-    <div class="section-container">
-      <h2>Industries We Serve</h2>
-      <p class="section-subtitle">Delivering tailored solutions across diverse sectors with precision and expertise</p>
-      <div class="industry-grid">
-        <div class="industry-card">
-          <i class="fas fa-store"></i>
-          <h3>Retail & POS</h3>
-          <p>Custom point-of-sale and inventory management systems</p>
-        </div>
-        <div class="industry-card">
-          <i class="fas fa-utensils"></i>
-          <h3>Food & Hospitality</h3>
-          <p>Streamlined operations and customer experience solutions</p>
-        </div>
-        <div class="industry-card">
-          <i class="fas fa-shield-alt"></i>
-          <h3>Cybersecurity</h3>
-          <p>Comprehensive protection and penetration testing services</p>
-        </div>
-        <div class="industry-card">
-          <i class="fas fa-search"></i>
-          <h3>Search & Workflow</h3>
-          <p>Intelligent search systems and automated workflow solutions</p>
-        </div>
-        <div class="industry-card">
-          <i class="fas fa-chart-line"></i>
-          <h3>Business Automation</h3>
-          <p>Process optimization and automation for operational excellence</p>
-        </div>
-        <div class="industry-card">
-          <i class="fas fa-laptop-code"></i>
-          <h3>Software Development</h3>
-          <p>Custom applications and system architecture design</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="about-approach">
-    <div class="section-container">
-      <h2>Our Approach</h2>
-      <div class="approach-content">
-        <div class="approach-text">
-          <p>
-            Our process blends systems architecture with real-world business logic. We start by deeply understanding
-            your
-            operations, then design modular solutions that automate, secure, and elevate your workflow.
-          </p>
-          <p>
-            Whether it's a complete POS system rollout or a comprehensive penetration test, we deliver with speed,
-            clarity, and measurable impact. Every project follows our proven methodology of discovery, design,
-            development, and deployment.
-          </p>
-        </div>
-        <div class="approach-features">
-          <div class="approach-feature">
-            <span class="feature-number">01</span>
-            <div class="feature-text">
-              <h4>Discovery & Analysis</h4>
-              <p>Deep dive into your business needs and technical requirements</p>
+          <div class="approach-features">
+            <div class="approach-feature">
+              <span class="feature-number">01</span>
+              <div class="feature-text">
+                <h4>Discovery & Analysis</h4>
+                <p>Deep dive into your business needs and technical requirements</p>
+              </div>
             </div>
-          </div>
-          <div class="approach-feature">
-            <span class="feature-number">02</span>
-            <div class="feature-text">
-              <h4>Strategic Design</h4>
-              <p>Architect solutions that align with your goals and growth plans</p>
+            <div class="approach-feature">
+              <span class="feature-number">02</span>
+              <div class="feature-text">
+                <h4>Strategic Design</h4>
+                <p>Architect solutions that align with your goals and growth plans</p>
+              </div>
             </div>
-          </div>
-          <div class="approach-feature">
-            <span class="feature-number">03</span>
-            <div class="feature-text">
-              <h4>Secure Development</h4>
-              <p>Build with security and scalability as foundational principles</p>
+            <div class="approach-feature">
+              <span class="feature-number">03</span>
+              <div class="feature-text">
+                <h4>Secure Development</h4>
+                <p>Build with security and scalability as foundational principles</p>
+              </div>
             </div>
-          </div>
-          <div class="approach-feature">
-            <span class="feature-number">04</span>
-            <div class="feature-text">
-              <h4>Quality Deployment</h4>
-              <p>Thorough testing and smooth implementation for immediate value</p>
+            <div class="approach-feature">
+              <span class="feature-number">04</span>
+              <div class="feature-text">
+                <h4>Quality Deployment</h4>
+                <p>Thorough testing and smooth implementation for immediate value</p>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <section class="clients-section">
-    <div class="section-header">
-      <h2>Our trusted cloud providers</h2>
-    </div>
-    <div class="clients-container">
-      <!-- First scroll set -->
-      <div class="clients-scroll">
-        <div class="client-logo">
-          <img src="/Logos/cloud/aws-logo@2x.7c50e6f9.png" alt="" loading="lazy">
-        </div>
-        <div class="client-logo">
-          <img src="/Logos/cloud/google-cloud-logo.svg" alt="" loading="lazy">
-        </div>
-        <div class="client-logo">
-          <img src="/Logos/cloud/logo-ab9bf4e494ce3cf9732243e7951a5ff2d9112461ed28479bdd12b5b3dc84b209.svg" alt=""
-            loading="lazy">
-        </div>
-        <div class="client-logo">
-          <img src="/Logos/cloud/1pixel-down__1_.svg" alt="" loading="lazy">
-        </div>
+    <section class="clients-section">
+      <div class="section-header">
+        <h2>Our trusted cloud providers</h2>
       </div>
-  </section>
+      <div class="clients-container">
+        <!-- First scroll set -->
+        <div class="clients-scroll">
+          <div class="client-logo">
+            <img src="/Logos/cloud/aws-logo@2x.7c50e6f9.png" alt="Amazon Web Services logo" loading="lazy"
+              decoding="async" fetchpriority="low" width="200" height="60">
+          </div>
+          <div class="client-logo">
+            <img src="/Logos/cloud/google-cloud-logo.svg" alt="Google Cloud logo" loading="lazy" decoding="async"
+              fetchpriority="low" width="200" height="60">
+          </div>
+          <div class="client-logo">
+            <img src="/Logos/cloud/logo-ab9bf4e494ce3cf9732243e7951a5ff2d9112461ed28479bdd12b5b3dc84b209.svg"
+              alt="Cloud partner logo" loading="lazy" decoding="async" fetchpriority="low" width="200" height="60">
+          </div>
+          <div class="client-logo">
+            <img src="/Logos/cloud/1pixel-down__1_.svg" alt="Partner logo" loading="lazy" decoding="async"
+              fetchpriority="low" width="200" height="60">
+          </div>
+        </div>
+    </section>
+  </main>
 
   <footer class="site-footer">
     <div class="footer-content">
@@ -326,13 +368,13 @@
       <div class="footer-social">
         <h4>Connect With Us</h4>
         <div class="social-icons">
-          <a href="https://facebook.com" target="_blank" aria-label="Facebook">
+          <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
             <i class="fab fa-facebook-f"></i>
           </a>
-          <a href="https://instagram.com" target="_blank" aria-label="Instagram">
+          <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
             <i class="fab fa-instagram"></i>
           </a>
-          <a href="https://linkedin.com" target="_blank" aria-label="LinkedIn">
+          <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
             <i class="fab fa-linkedin-in"></i>
           </a>
         </div>
@@ -342,7 +384,7 @@
     <div class="footer-bottom">
       <div class="footer-bottom-content">
         <div class="footer-copyright">
-          &copy; 2024 ExceptionIO. All rights reserved.
+          &copy; 2025 ExceptionIO. All rights reserved.
         </div>
         <div class="footer-legal">
           <a href="#">Privacy Policy</a>

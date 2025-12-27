@@ -1,0 +1,8 @@
+/Images/*
+  Cache-Control: public, max-age=31536000, immutable
+/Styles/*
+  Cache-Control: public, max-age=31536000, immutable
+/Scripts/*
+  Cache-Control: public, max-age=31536000, immutable
+/*.html
+  Cache-Control: public, max-age=0, must-revalidate
