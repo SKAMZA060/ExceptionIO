@@ -6,47 +6,74 @@ const fs = require('fs');
 const path = require('path');
 const sharp = require('sharp');
 
-const srcDir = path.join(__dirname, '..', 'Images', 'Portfolio');
-const outDir = srcDir; // write variants side-by-side
+const ROOT = path.join(__dirname, '..');
+const IMAGES_DIR = path.join(ROOT, 'Images');
 const sizes = [400, 800, 1200];
 
-if (!fs.existsSync(srcDir)) {
-  console.error('Source directory not found:', srcDir);
+function ensureDir(dir) {
+  if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
+}
+
+function normalizeBase(name) {
+  return name
+    .toLowerCase()
+    .replace(/\s+/g, '-')
+    .replace(/[^a-z0-9\-_.]/g, '');
+}
+
+function walkAndCollect(dir) {
+  const list = [];
+  for (const entry of fs.readdirSync(dir)) {
+    const fp = path.join(dir, entry);
+    const stat = fs.statSync(fp);
+    if (stat.isDirectory()) list.push(...walkAndCollect(fp));
+    else if (/\.(jpg|jpeg|png)$/i.test(entry)) list.push(fp);
+  }
+  return list;
+}
+
+if (!fs.existsSync(IMAGES_DIR)) {
+  console.error('Images directory not found:', IMAGES_DIR);
   process.exit(1);
 }
 
 (async () => {
-  const files = fs.readdirSync(srcDir).filter(f => /\.(jpg|jpeg|png|webp)$/i.test(f));
+  const files = walkAndCollect(IMAGES_DIR);
+  if (!files.length) {
+    console.log('No JPG/PNG images found under Images/. Nothing to do.');
+    return;
+  }
 
-  for (const file of files) {
-    const base = path.parse(file).name;
-    const ext = path.parse(file).ext.toLowerCase();
+  for (const inputPath of files) {
+    const dir = path.dirname(inputPath);
+    const parsed = path.parse(inputPath);
+    const base = parsed.name;
+    const ext = parsed.ext.toLowerCase();
 
-    // normalize name (lowercase, replace spaces)
-    const normalized = base.toLowerCase().replace(/\s+/g, '-');
-    const inputPath = path.join(srcDir, file);
+    const normalized = normalizeBase(base);
 
-    for (const w of sizes) {
-      const outputNameWebp = `${normalized}-${w}.webp`;
-      const outputPathWebp = path.join(outDir, outputNameWebp);
-
+    // If filename differs, copy normalized original alongside file
+    const normalizedOriginal = `${normalized}${ext}`;
+    const normalizedOriginalPath = path.join(dir, normalizedOriginal);
+    if (path.basename(inputPath) !== normalizedOriginal) {
       try {
-        await sharp(inputPath)
-          .resize({ width: w })
-          .webp({ quality: 75 })
-          .toFile(outputPathWebp);
-        console.log('Wrote', outputPathWebp);
+        fs.copyFileSync(inputPath, normalizedOriginalPath);
+        console.log('Copied original to', normalizedOriginalPath);
       } catch (err) {
-        console.error('Error processing', file, err);
+        console.warn('Could not copy normalized original for', inputPath, err.message);
       }
     }
 
-    // Optionally copy normalized original filename (png/jpg) if different
-    const normalizedOriginal = `${normalized}${ext}`;
-    const normalizedOriginalPath = path.join(outDir, normalizedOriginal);
-    if (file !== normalizedOriginal) {
-      fs.copyFileSync(inputPath, normalizedOriginalPath);
-      console.log('Copied original to', normalizedOriginalPath);
+    // Generate WebP variants
+    for (const w of sizes) {
+      const outputNameWebp = `${normalized}-${w}.webp`;
+      const outputPathWebp = path.join(dir, outputNameWebp);
+      try {
+        await sharp(inputPath).resize({ width: w }).webp({ quality: 75 }).toFile(outputPathWebp);
+        console.log('Wrote', outputPathWebp);
+      } catch (err) {
+        console.error('Error processing', inputPath, err.message);
+      }
     }
   }
 
