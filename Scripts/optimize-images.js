@@ -1,4 +1,4 @@
-// scripts/optimize-images.js
+// scripts/optimize-images.js (merged and conflict-resolved)
 // Usage: node scripts/optimize-images.js
 // Requires: npm install sharp --save-dev
 
@@ -9,10 +9,6 @@ const sharp = require('sharp');
 const ROOT = path.join(__dirname, '..');
 const IMAGES_DIR = path.join(ROOT, 'Images');
 const sizes = [400, 800, 1200];
-
-function ensureDir(dir) {
-  if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
-}
 
 function normalizeBase(name) {
   return name
