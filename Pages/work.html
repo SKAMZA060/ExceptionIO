@@ -3,13 +3,52 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ExceptionIO</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="/Styles/work.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="description"
+        content="ExceptionIO — Intelligent systems and seamless experiences. Explore our case studies and projects in POS, web, and mobile development.">
+    <meta name="robots" content="index,follow">
+    <meta name="theme-color" content="#0f172a">
+    <title>ExceptionIO — Our Work</title>
+
+    <!-- Performance: preconnect to cdn & fonts -->
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <!-- Load Google fonts & Font Awesome (non-blocking pattern) -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        crossorigin="anonymous">
+
+    <!-- Preload main stylesheet to improve render speed, then apply via onload -->
+    <link rel="preload" href="/Styles/work.css" as="style" onload="this.rel='stylesheet'">
+    <noscript>
+        <link rel="stylesheet" href="/Styles/work.css">
+    </noscript>
+
+    <!-- Preload a key portfolio image (replace with generated WebP in production) -->
+    <link rel="preload" as="image" href="/Images/Portfolio/MainView.PNG">
+
+    <!-- Canonical + Open Graph for better sharing & SEO -->
+    <link rel="canonical" href="https://example.com/Pages/work.html">
+    <meta property="og:title" content="ExceptionIO — Our Work">
+    <meta property="og:description" content="Case studies and featured projects: POS systems, landing pages, and more.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://example.com/Pages/work.html">
+    <meta property="og:image" content="https://example.com/Images/Portfolio/MainView.PNG">
+
+    <!-- Favicons and manifest -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+    <link rel="manifest" href="/site.webmanifest">
+
+    <!-- Minimal structured data -->
+    <script
+        type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"ExceptionIO","url":"https://example.com","logo":"https://example.com/favicon/favicon-32x32.png"}</script>
 </head>
 
 <body>
+    <a class="skip-link" href="#maincontent">Skip to content</a>
 
     <!-----------------------header section------------------------------------>
     <header class="header">
@@ -59,7 +98,7 @@
 
 
     <!--------------------------------------------------Our Work Section------------------------------------------------>
-    <section class="portfolio-section">
+    <section id="maincontent" class="portfolio-section">
         <div class="section-header">
             <h2>Our Work</h2>
             <p>See how we've helped businesses transform their operations with cutting-edge solutions</p>
@@ -70,7 +109,13 @@
             <!-- Project 2 -->
             <div class="portfolio-item">
                 <div class="project-image">
-                    <img src="/Images/Portfolio/MainView.PNG" alt="Retail POS System" loading="lazy">
+                    <picture>
+                        <source type="image/webp"
+                            srcset="/Images/Portfolio/mainview-1200.webp 1200w, /Images/Portfolio/mainview-800.webp 800w, /Images/Portfolio/mainview-400.webp 400w"
+                            sizes="(max-width: 768px) 100vw, 50vw">
+                        <img src="/Images/Portfolio/MainView.PNG" alt="Retail POS System" loading="lazy"
+                            decoding="async" fetchpriority="low" width="1200" height="800">
+                    </picture>
                 </div>
                 <div class="project-content">
                     <div class="project-header">
@@ -119,7 +164,14 @@
             <!-- Project 3 -->
             <div class="portfolio-item reverse">
                 <div class="project-image">
-                    <img src="/Images/Portfolio/GA Sekati lap.png" alt="GA SEKATI Landing Page" loading="lazy">
+                    <picture>
+                        <source type="image/webp"
+                            srcset="/Images/Portfolio/ga-sekati-lap-1200.webp 1200w, /Images/Portfolio/ga-sekati-lap-800.webp 800w, /Images/Portfolio/ga-sekati-lap-400.webp 400w"
+                            sizes="(max-width: 768px) 100vw, 50vw">
+                        <!-- NOTE: please rename the original file to `ga-sekati-lap.png` (no spaces, lowercase) and generate WebP/responsive variants before deploying -->
+                        <img src="/Images/Portfolio/GA%20Sekati%20lap.png" alt="GA SEKATI Landing Page" loading="lazy"
+                            decoding="async" fetchpriority="low" width="1200" height="800">
+                    </picture>
                 </div>
 
                 <div class="project-content">
@@ -227,7 +279,11 @@
         </div>
     </footer>
 
-    <script src="/Scripts/script.js"></script>
+    <script src="/Scripts/script.js" defer></script>
+
+    <!-- Quick JSON-LD for Organization (improves search appearance) -->
+    <script type="application/ld+json"
+        defer>{"@context":"https://schema.org","@type":"Organization","name":"ExceptionIO","url":"https://example.com","sameAs":["https://facebook.com","https://instagram.com"]}</script>
 </body>
 
 </html>

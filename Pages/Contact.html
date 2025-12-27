@@ -3,184 +3,301 @@
 
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ExceptionIO</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link rel="stylesheet" href="../Styles/contact.css">
-  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="description"
+    content="Contact ExceptionIO — let's discuss system development, mobile apps, security, and design.">
+  <meta name="robots" content="index,follow">
+  <meta name="theme-color" content="#0f172a">
+  <title>ExceptionIO — Contact</title>
+
+  <!-- Performance: preconnect and non-blocking font & icon loads -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    crossorigin="anonymous">
+
+  <!-- Preload CSS to speed render; switch to minified in production -->
+  <link rel="preload" href="/Styles/contact.css" as="style" onload="this.rel='stylesheet'">
+  <noscript>
+    <link rel="stylesheet" href="/Styles/contact.css">
+  </noscript>
+
+  <!-- Preload hero background image -->
+  <link rel="preload" as="image" href="/Images/backgrounds/7110.jpg">
+
+  <!-- Canonical & Open Graph -->
+  <link rel="canonical" href="https://example.com/Pages/Contact.html">
+  <meta property="og:title" content="Contact ExceptionIO">
+  <meta property="og:description"
+    content="Get in touch with ExceptionIO for enterprise systems, mobile apps, penetration testing and UX design.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://example.com/Pages/Contact.html">
+  <meta property="og:image" content="https://example.com/Images/backgrounds/7110.jpg">
+
+  <!-- Favicons & manifest -->
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+  <link rel="manifest" href="/site.webmanifest">
+
+  <!-- Minimal JSON-LD -->
+  <script
+    type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"ExceptionIO","url":"https://example.com","logo":"https://example.com/favicon/favicon-32x32.png"}</script>
 </head>
-<header class="header">
-  <nav class="main-nav">
-    <div class="logo-section">
-      <div class="logo-container">
-        <div class="logo-small">
-          <span>ExceptionIO</span>
+
+<body>
+  <a class="skip-link" href="#maincontent">Skip to content</a>
+  <header class="header">
+    <nav class="main-nav">
+      <div class="logo-section">
+        <div class="logo-container">
+          <div class="logo-small">
+            <span>ExceptionIO</span>
+          </div>
+          <div class="slogan">
+            Intelligent Systems, Seamless Experiences
+          </div>
         </div>
-        <div class="slogan">
-          Intelligent Systems, Seamless Experiences
-        </div>
-      </div>
-    </div>
-
-    <ul class="nav-links">
-      <li><a href="/index.html">Home</a></li>
-      <li class="dropdown">
-        <button class="dropbtn">Our Services <i class="fa fa-caret-down"></i></button>
-        <div class="dropdown-content">
-          <a href="/Pages/service.html">System Development</a>
-          <a href="/Pages/service.html">Mobile Development</a>
-          <a href="/Pages/service.html">Penetration Testing</a>
-          <a href="/Pages/service.html">UI/UX Design</a>
-        </div>
-      </li>
-      <li><a href="/Pages/about.html">About</a></li>
-      <li><a href="/Pages/work.html">Our Work</a></li>
-      <li><a href="/Pages/Contact.html">Contact</a></li>
-    </ul>
-
-    <div class="nav-right">
-      <div class="social-icons">
-        <a href="https://facebook.com" target="_blank" aria-label="Facebook">
-          <i class="fab fa-facebook-f"></i>
-        </a>
-        <a href="https://instagram.com" target="_blank" aria-label="Instagram">
-          <i class="fab fa-instagram"></i>
-        </a>
-      </div>
-      <button class="menu-toggle" aria-label="Toggle menu">
-        <i class="fas fa-bars"></i>
-      </button>
-    </div>
-  </nav>
-</header>
-<!-- Contact Section -->
-<section class="contact-hero">
-  <div class="contact-hero-content">
-    <h1>Let's Build Something Exceptional</h1>
-    <p>Ready to transform your ideas into intelligent, scalable systems? Get in touch and let's discuss how ExceptionIO
-      can drive your business forward.</p>
-  </div>
-</section>
-
-<div class="contact-container">
-  <h2>Get In Touch</h2>
-
-  <form id="contactForm">
-    <div class="form-row">
-      <div class="form-group">
-        <label for="firstName">Your first name</label>
-        <input type="text" id="firstName" name="firstName" required>
       </div>
 
-      <div class="form-group">
-        <label for="lastName">Your last name</label>
-        <input type="text" id="lastName" name="lastName" required>
-      </div>
-    </div>
-
-    <div class="form-row">
-      <div class="form-group">
-        <label for="email">Your email address</label>
-        <input type="email" id="email" name="email" required>
-      </div>
-
-      <div class="form-group">
-        <label for="phone">Contact number</label>
-        <input type="tel" id="phone" name="phone">
-      </div>
-    </div>
-
-    <div class="form-group-full">
-      <label for="companySize">Your company size</label>
-      <select id="companySize" name="companySize">
-        <option value="" disabled selected>Select company size</option>
-        <option value="1-10">1-10 employees</option>
-        <option value="11-50">11-50 employees</option>
-        <option value="51-200">51-200 employees</option>
-        <option value="201-500">201-500 employees</option>
-        <option value="501+">501+ employees</option>
-      </select>
-    </div>
-
-    <!-- Add message field -->
-    <div class="form-group-full">
-      <label for="message">Your Message</label>
-      <textarea id="message" name="message" rows="5" required></textarea>
-    </div>
-
-    <div class="checkbox-group">
-      <input type="checkbox" id="privacyPolicy" name="privacyPolicy" required>
-      <label for="privacyPolicy">By continuing, I acknowledge and consent to ExceptionIO's <a href="#">Privacy
-          Policy</a>.</label>
-    </div>
-
-    <button type="submit" class="submit-btn">Send</button>
-  </form>
-</div>
-
-<!-- Footer Section -->
-<footer class="site-footer">
-  <div class="footer-content">
-    <div class="footer-brand">
-      <div class="footer-logo">ExceptionIO</div>
-      <p>Building intelligent systems and seamless experiences that drive real-world business impact through precision
-        engineering and innovative design.</p>
-      <div class="footer-slogan">Intelligent Systems, Seamless Experiences</div>
-    </div>
-
-    <div class="footer-links">
-      <h4>Quick Links</h4>
-      <ul>
+      <ul class="nav-links">
         <li><a href="/index.html">Home</a></li>
-        <li><a href="/Pages/service.html">Services</a></li>
+        <li class="dropdown">
+          <button class="dropbtn">Our Services <i class="fa fa-caret-down"></i></button>
+          <div class="dropdown-content">
+            <a href="/Pages/service.html">System Development</a>
+            <a href="/Pages/service.html">Mobile Development</a>
+            <a href="/Pages/service.html">Penetration Testing</a>
+            <a href="/Pages/service.html">UI/UX Design</a>
+          </div>
+        </li>
         <li><a href="/Pages/about.html">About</a></li>
         <li><a href="/Pages/work.html">Our Work</a></li>
-        <li><a href="/Pages/Contact.html">Contact</a></li>
+        <li><a href="/Pages/Contact.html" class="active" aria-current="page">Contact</a></li>
       </ul>
-    </div>
 
-    <div class="footer-links">
-      <h4>Services</h4>
-      <ul>
-        <li><a href="/Pages/service.html">System Development</a></li>
-        <li><a href="/Pages/service.html">Mobile Development</a></li>
-        <li><a href="/Pages/service.html">Penetration Testing</a></li>
-        <li><a href="/Pages/service.html">UI/UX Design</a></li>
-        <li><a href="/Pages/service.html">Business Automation</a></li>
-      </ul>
-    </div>
-
-    <div class="footer-social">
-      <h4>Connect With Us</h4>
-      <div class="social-icons">
-        <a href="https://facebook.com" target="_blank" aria-label="Facebook">
-          <i class="fab fa-facebook-f"></i>
-        </a>
-        <a href="https://instagram.com" target="_blank" aria-label="Instagram">
-          <i class="fab fa-instagram"></i>
-        </a>
-        <a href="https://linkedin.com" target="_blank" aria-label="LinkedIn">
-          <i class="fab fa-linkedin-in"></i>
-        </a>
+      <div class="nav-right">
+        <div class="social-icons">
+          <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+            <i class="fab fa-facebook-f"></i>
+          </a>
+          <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+            <i class="fab fa-instagram"></i>
+          </a>
+        </div>
+        <button class="menu-toggle" aria-label="Toggle menu">
+          <i class="fas fa-bars"></i>
+        </button>
       </div>
-    </div>
-  </div>
-
-  <div class="footer-bottom">
-    <div class="footer-bottom-content">
-      <div class="footer-copyright">
-        &copy; 2024 ExceptionIO. All rights reserved.
+    </nav>
+  </header>
+  <!-- Contact Section -->
+  <main id="maincontent" class="page-content">
+    <section class="contact-hero">
+      <div class="contact-hero-content">
+        <h1>Let's Build Something Exceptional</h1>
+        <p>Ready to transform your ideas into intelligent, scalable systems? Get in touch and let's discuss how
+          ExceptionIO
+          can drive your business forward.</p>
       </div>
-      <div class="footer-legal">
-        <a href="#">Privacy Policy</a>
-        <a href="#">Terms of Service</a>
-        <a href="#">Cookie Policy</a>
-      </div>
-    </div>
-  </div>
-</footer>
+    </section>
 
-<script src="../Scripts/script.js"></script>
+    <div class="contact-container">
+      <h2>Get In Touch</h2>
+      <p class="contact-help">Prefer to email? <a href="mailto:hello@example.com"
+          rel="noopener noreferrer">hello@example.com</a> — or call <a href="tel:+27">+27 62 884 5123</a>.</p>
+
+<form id="contactForm" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" novalidate data-emailjs-public-key="%%EMAILJS_PUBLIC_KEY%%" data-emailjs-service="%%EMAILJS_SERVICE_ID%%" data-emailjs-template="%%EMAILJS_TEMPLATE_ID%%" data-emailjs-notification-template="%%EMAILJS_NOTIFICATION_TEMPLATE%%">
+    <!-- Netlify form support + honeypot to reduce spam. EmailJS attributes are replaced at build-time by CI if configured. -->
+        <input type="hidden" name="form-name" value="contact">
+        <input type="hidden" id="bot-field" name="bot-field" aria-hidden="true">
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="firstName">Your first name</label>
+            <input type="text" id="firstName" name="firstName" required aria-required="true"
+              aria-describedby="firstNameHelp" autocomplete="given-name">
+          </div>
+
+          <div class="form-group">
+            <label for="lastName">Your last name</label>
+            <input type="text" id="lastName" name="lastName" required aria-required="true" autocomplete="family-name">
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="email">Your email address</label>
+            <input type="email" id="email" name="email" required aria-required="true" aria-describedby="emailHelp"
+              autocomplete="email">
+            <div id="emailHelp" class="sr-only">We'll only use this to contact you about your request.</div>
+          </div>
+
+          <div class="form-group">
+            <label for="phone">Contact number</label>
+            <input type="tel" id="phone" name="phone" pattern="[0-9+()\-\s]{7,20}" aria-describedby="phoneHelp"
+              autocomplete="tel">
+            <div id="phoneHelp" class="sr-only">Optional: include country code if outside South Africa.</div>
+          </div>
+        </div>
+
+        <div class="form-group-full">
+          <label for="companySize">Your company size</label>
+          <select id="companySize" name="companySize">
+            <option value="" disabled selected>Select company size</option>
+            <option value="1-10">1-10 employees</option>
+            <option value="11-50">11-50 employees</option>
+            <option value="51-200">51-200 employees</option>
+            <option value="201-500">201-500 employees</option>
+            <option value="501+">501+ employees</option>
+          </select>
+        </div>
+
+        <div class="form-group-full">
+          <label for="message">Your Message</label>
+          <textarea id="message" name="message" rows="5" required aria-required="true"></textarea>
+        </div>
+
+        <div class="checkbox-group">
+          <input type="checkbox" id="privacyPolicy" name="privacyPolicy" required aria-required="true">
+          <label for="privacyPolicy">By continuing, I acknowledge and consent to ExceptionIO's <a
+              href="/Pages/privacy.html" rel="noopener noreferrer">Privacy
+              Policy</a>.</label>
+        </div>
+
+        <div id="formStatus" role="status" aria-live="polite" class="form-status" aria-hidden="true"></div>
+
+        <noscript>
+          <p class="noscript-warning">JavaScript is disabled — submit the form to send your message via the server.</p>
+        </noscript>
+
+        <button type="submit" class="submit-btn" aria-describedby="formStatus">Send</button>
+      </form>
+    </div>
+
+    <!-- Footer Section -->
+    <footer class="site-footer">
+      <div class="footer-content">
+        <div class="footer-brand">
+          <div class="footer-logo">ExceptionIO</div>
+          <p>Building intelligent systems and seamless experiences that drive real-world business impact through
+            precision
+            engineering and innovative design.</p>
+          <div class="footer-slogan">Intelligent Systems, Seamless Experiences</div>
+        </div>
+
+        <div class="footer-links">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="/index.html">Home</a></li>
+            <li><a href="/Pages/service.html">Services</a></li>
+            <li><a href="/Pages/about.html">About</a></li>
+            <li><a href="/Pages/work.html">Our Work</a></li>
+            <li><a href="/Pages/Contact.html">Contact</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-links">
+          <h4>Services</h4>
+          <ul>
+            <li><a href="/Pages/service.html">System Development</a></li>
+            <li><a href="/Pages/service.html">Mobile Development</a></li>
+            <li><a href="/Pages/service.html">Penetration Testing</a></li>
+            <li><a href="/Pages/service.html">UI/UX Design</a></li>
+            <li><a href="/Pages/service.html">Business Automation</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-social">
+          <h4>Connect With Us</h4>
+          <div class="social-icons">
+            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+              <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+              <i class="fab fa-instagram"></i>
+            </a>
+            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+              <i class="fab fa-linkedin-in"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div class="footer-bottom-content">
+          <div class="footer-copyright">
+            &copy; 2025 ExceptionIO. All rights reserved.
+          </div>
+          <div class="footer-legal">
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms of Service</a>
+            <a href="#">Cookie Policy</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js" defer></script>
+    <script src="/Scripts/script.js" defer></script>
+    <script defer>
+      // Contact form handler (client-side EmailJS + Netlify fallback)
+      // Replace 'YOUR_PUBLIC_KEY', 'YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID' with your EmailJS project values.
+      document.addEventListener('DOMContentLoaded', function () {
+        var form = document.getElementById('contactForm');
+        var status = document.getElementById('formStatus');
+
+        function showStatus(msg, cls) {
+          status.textContent = msg;
+          status.className = 'form-status ' + cls;
+          status.setAttribute('aria-hidden', 'false');
+        }
+
+        // Initialize EmailJS if available
+        if (window.emailjs && emailjs.init) {
+          try { emailjs.init('YOUR_PUBLIC_KEY'); } catch (e) { console.warn('EmailJS init failed', e); }
+        }
+
+        form.addEventListener('submit', function (e) {
+          e.preventDefault();
+
+          // Honeypot check
+          if (document.getElementById('bot-field').value) {
+            showStatus('Submission rejected (bot detected).', 'error');
+            return;
+          }
+
+          showStatus('Sending...', 'sending');
+
+          // Prefer EmailJS if available
+          if (window.emailjs && emailjs.sendForm) {
+            emailjs.sendForm('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', this)
+              .then(function () {
+                showStatus('Message sent — we will reply soon.', 'success');
+                form.reset();
+              }, function (err) {
+                console.error('EmailJS error', err);
+                showStatus('Sending failed. Please try again or email hello@example.com.', 'error');
+              });
+          } else {
+            // Netlify fallback - submit form data to server
+            fetch('/', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+              body: new URLSearchParams(new FormData(this))
+            }).then(function () {
+              showStatus('Message sent — we will reply soon.', 'success');
+              form.reset();
+            }).catch(function (err) {
+              console.error('Form submit error', err);
+              showStatus('Sending failed. Please try again later.', 'error');
+            });
+          }
+        });
+      });
+    </script>
 </body>
 
 </html>
