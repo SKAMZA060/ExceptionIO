@@ -67,7 +67,8 @@
             <ul class="nav-links">
                 <li><a href="/index.html">Home</a></li>
                 <li class="dropdown">
-                    <button class="dropbtn">Our Services <i class="fa fa-caret-down"></i></button>
+                    <button class="dropbtn" aria-haspopup="true" aria-expanded="false">Our Services <i
+                            class="fa fa-caret-down"></i></button>
                     <div class="dropdown-content">
                         <a href="/Pages/service.html">System Development</a>
                         <a href="/Pages/service.html">Mobile Development</a>
@@ -82,7 +83,7 @@
 
             <div class="nav-right">
                 <div class="social-icons">
-                    <a href="" target="_blank" aria-label="Facebook">
+                    <a href="" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
                         <i class="fab fa-facebook-f"></i>
                     </a>
                     <a href="https://instagram.com" target="_blank" aria-label="Instagram">
@@ -113,8 +114,11 @@
                         <source type="image/webp"
                             srcset="/Images/Portfolio/mainview-1200.webp 1200w, /Images/Portfolio/mainview-800.webp 800w, /Images/Portfolio/mainview-400.webp 400w"
                             sizes="(max-width: 768px) 100vw, 50vw">
-                        <img src="/Images/Portfolio/MainView.PNG" alt="Retail POS System" loading="lazy"
-                            decoding="async" fetchpriority="low" width="1200" height="800">
+                        <!-- Fallback srcset uses the existing PNG files so images show immediately even if WebP variants aren't generated yet -->
+                        <img src="/Images/Portfolio/MainView.PNG"
+                            srcset="/Images/Portfolio/MainView.PNG 1200w, /Images/Portfolio/MainView.PNG 800w, /Images/Portfolio/MainView.PNG 400w"
+                            alt="Retail POS System" loading="lazy" decoding="async" fetchpriority="low" width="1200"
+                            height="800">
                     </picture>
                 </div>
                 <div class="project-content">
@@ -148,8 +152,8 @@
 
                     <p class="project-description">
                         Developed a comprehensive point-of-sale system for a startup fastfood,
-                        integrating inventory management,recipt printing, and real-time
-                        analytics. The system handles on demand transaction seamlessly.
+                        integrating inventory management, receipt printing, and real-time
+                        analytics. The system handles on-demand transactions seamlessly.
                     </p>
 
                     <div class="project-actions">
@@ -168,9 +172,11 @@
                         <source type="image/webp"
                             srcset="/Images/Portfolio/ga-sekati-lap-1200.webp 1200w, /Images/Portfolio/ga-sekati-lap-800.webp 800w, /Images/Portfolio/ga-sekati-lap-400.webp 400w"
                             sizes="(max-width: 768px) 100vw, 50vw">
-                        <!-- NOTE: please rename the original file to `ga-sekati-lap.png` (no spaces, lowercase) and generate WebP/responsive variants before deploying -->
-                        <img src="/Images/Portfolio/GA%20Sekati%20lap.png" alt="GA SEKATI Landing Page" loading="lazy"
-                            decoding="async" fetchpriority="low" width="1200" height="800">
+                        <!-- WebP/responsive variants will be generated during the build. Current file is `ga-sekati-lap.png` (lowercase, hyphenated) -->
+                        <img src="/Images/Portfolio/ga-sekati-lap.png"
+                            srcset="/Images/Portfolio/ga-sekati-lap.png 1200w, /Images/Portfolio/ga-sekati-lap.png 800w, /Images/Portfolio/ga-sekati-lap.png 400w"
+                            alt="GA SEKATI Landing Page" loading="lazy" decoding="async" fetchpriority="low"
+                            width="1200" height="800">
                     </picture>
                 </div>
 
@@ -206,6 +212,7 @@
                     </p>
                 </div>
             </div>
+        </div> <!-- .portfolio-container -->
 
     </section>
 
@@ -252,13 +259,13 @@
             <div class="footer-social">
                 <h4>Connect With Us</h4>
                 <div class="social-icons">
-                    <a href="https://facebook.com" target="_blank" aria-label="Facebook">
+                    <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
                         <i class="fab fa-facebook-f"></i>
                     </a>
                     <a href="https://instagram.com" target="_blank" aria-label="Instagram">
                         <i class="fab fa-instagram"></i>
                     </a>
-                    <a href="https://linkedin.com" target="_blank" aria-label="LinkedIn">
+                    <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
                         <i class="fab fa-linkedin-in"></i>
                     </a>
                 </div>
@@ -268,7 +275,7 @@
         <div class="footer-bottom">
             <div class="footer-bottom-content">
                 <div class="footer-copyright">
-                    &copy; 2024 ExceptionIO. All rights reserved.
+                    &copy; 2025 ExceptionIO. All rights reserved.
                 </div>
                 <div class="footer-legal">
                     <a href="#">Privacy Policy</a>
@@ -281,9 +288,6 @@
 
     <script src="/Scripts/script.js" defer></script>
 
-    <!-- Quick JSON-LD for Organization (improves search appearance) -->
-    <script type="application/ld+json"
-        defer>{"@context":"https://schema.org","@type":"Organization","name":"ExceptionIO","url":"https://example.com","sameAs":["https://facebook.com","https://instagram.com"]}</script>
 </body>
 
 </html>
