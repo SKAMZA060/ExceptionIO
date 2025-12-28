@@ -1,4 +1,4 @@
-name: Deploy static content to Pages
+name: Deploy Website
 
 on:
   push:
@@ -21,29 +21,36 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      # 1. Get your code
+      - name: Checkout code
         uses: actions/checkout@v4
 
+      # 2. Setup Node.js (for inject-secrets.js)
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '18'
 
+      # 3. INJECT SECRETS - This is the CRITICAL step!
       - name: Inject EmailJS Secrets
         env:
           EMAILJS_PUBLIC_KEY: ${{ secrets.EMAILJS_PUBLIC_KEY }}
           EMAILJS_SERVICE_ID: ${{ secrets.EMAILJS_SERVICE_ID }}
           EMAILJS_TEMPLATE_ID: ${{ secrets.EMAILJS_TEMPLATE_ID }}
           EMAILJS_NOTIFICATION_TEMPLATE: ${{ secrets.EMAILJS_NOTIFICATION_TEMPLATE }}
-        run: node scripts/inject-secrets.js
+        run: |
+          echo "Injecting EmailJS secrets..."
+          node scripts/inject-secrets.js
+          echo "Done! Created dist/ folder with real keys."
 
+      # 4. Deploy the BUILT files (dist/ folder)
       - name: Setup Pages
         uses: actions/configure-pages@v5
         
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: 'dist'
+          path: 'dist'  # ← Deploys the BUILT files with REAL keys!
           
       - name: Deploy to GitHub Pages
         id: deployment

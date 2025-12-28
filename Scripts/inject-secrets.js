@@ -54,7 +54,19 @@ if (fs.existsSync(DIST)) {
 ensureDir(DIST);
 
 // Files/folders to copy into dist (adjust as needed)
-const toCopy = ['index.html', '_headers', 'Pages', 'Styles', 'Scripts', 'Images', 'Logos', 'favicon', 'favicon.ico'];
+const toCopy = [
+  'index.html', 
+  'Pages', 
+  'Styles', 
+  'Scripts', 
+  'Images', 
+  'Logos', 
+  'favicon', 
+  'favicon.ico',
+  '.nojekyll',  // Important for GitHub Pages
+  'CNAME'       // If you have custom domain
+];
+// Files/folders to copy into dist (adjust as needed)
 for (const item of toCopy) {
   const src = path.join(ROOT, item);
   if (fs.existsSync(src)) {
