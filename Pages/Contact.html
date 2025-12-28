@@ -258,9 +258,17 @@
           status.setAttribute('aria-hidden', 'false');
         }
 
-        // Initialize EmailJS if available
-        if (window.emailjs && emailjs.init) {
-          try { emailjs.init('YOUR_PUBLIC_KEY'); } catch (e) { console.warn('EmailJS init failed', e); }
+        // Read EmailJS config from form data attributes (injected during build)
+        var emailjsPublicKey = form.dataset.emailjsPublicKey;
+        var emailjsService = form.dataset.emailjsService;
+        var emailjsTemplate = form.dataset.emailjsTemplate;
+        var emailjsNotificationTemplate = form.dataset.emailjsNotificationTemplate;
+
+        // Initialize EmailJS if we have a public key
+        if (emailjsPublicKey && window.emailjs && emailjs.init) {
+          try { emailjs.init(emailjsPublicKey); } catch (e) { console.warn('EmailJS init failed', e); }
+        } else if (!emailjsPublicKey) {
+          console.info('EmailJS public key not set; using Netlify form fallback.');
         }
 
         form.addEventListener('submit', function (e) {
@@ -274,9 +282,9 @@
 
           showStatus('Sending...', 'sending');
 
-          // Prefer EmailJS if available
-          if (window.emailjs && emailjs.sendForm) {
-            emailjs.sendForm('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', this)
+          // Prefer EmailJS if available and configured
+          if (window.emailjs && emailjs.sendForm && emailjsService && emailjsTemplate) {
+            emailjs.sendForm(emailjsService, emailjsTemplate, this)
               .then(function () {
                 showStatus('Message sent — we will reply soon.', 'success');
                 form.reset();
@@ -285,6 +293,7 @@
                 showStatus('Sending failed. Please try again or email hello@example.com.', 'error');
               });
           } else {
+            console.info('Using Netlify form fallback (EmailJS not configured).');
             // Netlify fallback - submit form data to server
             fetch('/', {
               method: 'POST',

@@ -19,7 +19,21 @@ function copy(src, dest) {
     for (const entry of fs.readdirSync(src)) copy(path.join(src, entry), path.join(dest, entry));
   } else {
     ensureDir(path.dirname(dest));
-    fs.copyFileSync(src, dest);
+    try {
+      // Prefer atomic copy
+      fs.copyFileSync(src, dest);
+    } catch (err) {
+      // Sometimes Windows/OneDrive may lock or present cloud-only files. Attempt a streaming fallback.
+      console.warn(`Warning: copy failed for ${src} -> ${dest}. Attempting stream fallback. (${err.code || err.message})`);
+      try {
+        const rd = fs.createReadStream(src);
+        const wr = fs.createWriteStream(dest);
+        rd.pipe(wr);
+      } catch (err2) {
+        // If streaming also fails, log and continue without aborting the build.
+        console.error(`Failed to copy ${src}. Skipping file. (${err2.code || err2.message})`);
+      }
+    }
   }
 }
 
