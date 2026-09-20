@@ -3,12 +3,21 @@ document.addEventListener('DOMContentLoaded', function() {
     const menuToggle = document.querySelector('.menu-toggle');
     const navLinks = document.querySelector('.nav-links');
     const socialIcons = document.querySelector('.social-icons');
+
+    if (!menuToggle || !navLinks) return;
+
+    menuToggle.setAttribute('aria-expanded', 'false');
+    menuToggle.setAttribute('aria-controls', 'site-navigation');
+    navLinks.id = 'site-navigation';
     
     menuToggle.addEventListener('click', function() {
-        navLinks.classList.toggle('active');
+        const isOpen = navLinks.classList.toggle('active');
+        menuToggle.setAttribute('aria-expanded', String(isOpen));
+        menuToggle.querySelector('i')?.classList.toggle('fa-bars', !isOpen);
+        menuToggle.querySelector('i')?.classList.toggle('fa-xmark', isOpen);
         
         // Clone social icons for mobile menu
-        if (navLinks.classList.contains('active') && !document.querySelector('.social-icons.mobile-visible')) {
+        if (isOpen && socialIcons && !document.querySelector('.social-icons.mobile-visible')) {
             const mobileSocialIcons = socialIcons.cloneNode(true);
             mobileSocialIcons.classList.add('mobile-visible');
             navLinks.appendChild(mobileSocialIcons);
@@ -19,7 +28,19 @@ document.addEventListener('DOMContentLoaded', function() {
     document.addEventListener('click', function(event) {
         if (!event.target.closest('.main-nav') && navLinks.classList.contains('active')) {
             navLinks.classList.remove('active');
+            menuToggle.setAttribute('aria-expanded', 'false');
+            menuToggle.querySelector('i')?.classList.add('fa-bars');
+            menuToggle.querySelector('i')?.classList.remove('fa-xmark');
         }
+    });
+
+    navLinks.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+            navLinks.classList.remove('active');
+            menuToggle.setAttribute('aria-expanded', 'false');
+            menuToggle.querySelector('i')?.classList.add('fa-bars');
+            menuToggle.querySelector('i')?.classList.remove('fa-xmark');
+        });
     });
     
     // Mobile dropdown functionality
@@ -284,66 +305,44 @@ function openTab(evt, tabName) {
 
 
     
-// Form submission handling with EmailJS
+// Contact form submission stays on this page while posting to the contact endpoint.
 document.addEventListener('DOMContentLoaded', function() {
     const contactForm = document.getElementById('contactForm');
+    if (!contactForm) return;
+
     const submitBtn = contactForm.querySelector('.submit-btn');
-    
-    // Initialize EmailJS with your Public Key
-    emailjs.init('OX-a1fFWh5t1sFFrN');
-    
+
     contactForm.addEventListener('submit', function(e) {
         e.preventDefault();
-        
-        // Show loading state
+
         submitBtn.classList.add('loading');
         submitBtn.disabled = true;
         submitBtn.textContent = 'Sending...';
-        
-        // Get form data
-        const formData = {
-            firstName: document.getElementById('firstName').value,
-            lastName: document.getElementById('lastName').value,
-            email: document.getElementById('email').value,
-            phone: document.getElementById('phone').value,
-            companySize: document.getElementById('companySize').value,
-            message: document.getElementById('message').value,
-            privacyPolicy: document.getElementById('privacyPolicy').checked,
-            timestamp: new Date().toLocaleString('en-US', { 
-                weekday: 'long', 
-                year: 'numeric', 
-                month: 'long', 
-                day: 'numeric',
-                hour: '2-digit',
-                minute: '2-digit'
-            })
-        };
-        
-        // Send TWO emails: Auto-reply to user + Notification to you
-        Promise.all([
-            // Auto-reply to user
-            emailjs.send('service_3ia6jom', 'template_9k5hxqd', formData),
-            // Notification to you (business owner)
-            emailjs.send('service_3ia6jom', 'template_notification', formData)
-        ])
-        .then(function(responses) {
-            console.log('SUCCESS! Both emails sent', responses);
-            
-            // Show professional success message
-            showSuccessMessage(formData.firstName);
+
+        const formData = new FormData(contactForm);
+        const firstName = formData.get('firstName');
+        const requestBody = new URLSearchParams();
+        ['firstName', 'lastName', 'email', 'phone', 'message'].forEach((fieldName) => {
+            requestBody.append(fieldName, formData.get(fieldName) || '');
+        });
+
+        fetch('https://myspazapos.co.za/contact', {
+            method: 'POST',
+            mode: 'no-cors',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
+            },
+            body: requestBody.toString()
+        })
+        .then(function() {
+            showSuccessMessage(firstName);
             contactForm.reset();
-            
-            // Reset button state
-            submitBtn.classList.remove('loading');
-            submitBtn.disabled = false;
-            submitBtn.textContent = 'Send';
-        }, function(error) {
-            console.log('FAILED...', error);
-            
-            // Show error message
+        })
+        .catch(function(error) {
+            console.error('Contact form submission failed', error);
             showErrorMessage();
-            
-            // Reset button state
+        })
+        .finally(function() {
             submitBtn.classList.remove('loading');
             submitBtn.disabled = false;
             submitBtn.textContent = 'Send';
